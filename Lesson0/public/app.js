@@ -13,5 +13,5 @@ function fNumber() {
 }
 
 function fName() {
- rootTag.innerHTML = "My name is VEDA SAI";   
+ rootTag.innerHTML = 'My name is VEDA SAI';   
 }
