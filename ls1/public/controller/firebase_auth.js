@@ -29,11 +29,15 @@ export function addEventListeners() {
                 console.log(`sign in error:${errorCode} | ${errorMessage}`)
 
         }
-
-
-
-
     });
+
+    Elements.formCreateAccount.addEventListener('submit', async e => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const passwordConfirm = e.target.passwordConfirm.value;
+    });
+
     Elements.menuSignOut.addEventListener('click', async () => {
         //sign out from firebase Auth
         try {

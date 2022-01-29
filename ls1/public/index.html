@@ -41,8 +41,8 @@
           </li>
         </ul>
         <div class="modal-postauth">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form id="form-search" class="d-flex">
+            <input name="searchKeys" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
@@ -68,6 +68,35 @@
             </div>
             <div>
               <button class="btn btn-outline-primary" type="submit">Sign In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Create Account -->
+  <div class="modal fade" id="modal-create-account" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modal-create-account-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-create-account-label">Create Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="form-create-account">
+            <div>
+              <input type="email" name="email" required placeholder="email address">
+            </div>
+            <div>
+              <input type="password" name="password" required minlength="6" placeholder="password">
+            </div>
+            <div>
+              <input type="password" name="passwordConfirm" required placeholder="Confirm password">
+            </div>
+            <div>
+              <button type="submit" class="btn btn-outline-primary">Create</button>
             </div>
           </form>
         </div>
@@ -129,7 +158,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
-  
+
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDBKH451wxf3qUdKr0d1B0d4sR-bGAZh88",
@@ -139,7 +168,7 @@
       messagingSenderId: "626307077447",
       appId: "1:626307077447:web:c19ffaf8e93361b7ed6862"
     };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
   </script>
