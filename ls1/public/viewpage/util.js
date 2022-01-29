@@ -10,7 +10,7 @@ export function info(title, body, closeModal) {
 export function disableButton(button) {
     button.disabled = true;
     const originalLabel = button.innerHTML;
-    button.innerHTML = 'Wait ...';
+    button.innerHTML = 'Wait...';
     return originalLabel;
 }
 

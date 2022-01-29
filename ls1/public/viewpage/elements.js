@@ -1,7 +1,7 @@
 //main root element
 export const root = document.getElementById('root');
 
-//forms
+//form
 export const formSearch = document.getElementById('form-search');
 export const formSignIn = document.getElementById('form-signin');
 export const formCreateThread = document.getElementById('form-create-thread');

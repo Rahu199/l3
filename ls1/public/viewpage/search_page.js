@@ -1,11 +1,11 @@
-import * as Elements from './elements.js';
-import * as Util from './util.js';
+import * as Elements from './elements.js'
+import * as Util from './util.js'
 import { routePath } from '../controller/route.js';
 import { currentUser } from '../controller/firebase_auth.js';
-import * as ProtectedMessage from './protected_message.js';
-import * as FirestoreController from '../controller/firestore_controller.js';
-import * as Constants from '../model/constants.js';
-import {buildHomescreen} from './home_page.js';
+import * as ProtectedMessage from './protected_message.js'
+import * as FirestoreController from '../controller/firestore_controller.js'
+import * as Constants from '../model/constants.js'
+import { buildHomescreen } from './home_page.js'
 
 export function addEventListeners() {
 
@@ -48,20 +48,20 @@ export async function search_page(joinedSearchKeys) {
         return;
     }
 
-        if (!currentUser) {
-            Elements.root.innerHTML = ProtectedMessage.html;
-            return;
-        }
-
-        let threadList;
-        try {
-            threadList = await FirestoreController.searchThreads(searchKeysArray);
-        } catch (e) {
-            if (Constants.DEV) console.log(e);
-            Util.info('search Error', JSON.stringify(e));
-            return;
-        }
-
-        buildHomescreen(threadList);
-
+    if (!currentUser) {
+        Elements.root.innerHTML = ProtectedMessage.html;
+        return;
     }
+
+    let threadList;
+    try {
+        threadList = await FirestoreController.searchThreads(searchKeysArray);
+    } catch (e) {
+        if (Constants.DEV) console.log(e);
+        Util.info('Search Error', JSON.stringify(e));
+        return;
+    }
+    
+    buildHomescreen(threadList);
+
+}

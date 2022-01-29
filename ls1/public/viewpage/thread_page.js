@@ -3,10 +3,9 @@ import * as ProtectedMessage from './protected_message.js'
 import * as Elements from './elements.js'
 import * as Util from './util.js'
 import * as FirestoreController from '../controller/firestore_controller.js';
-import * as Constants from '../model/constants.js';
-import { html } from "./welcome_message.js";
+import * as Constants from '../model/constants.js'
 import { Reply } from "../model/reply.js";
-import { routePath} from '../controller/route.js';
+import { routePath } from '../controller/route.js'
 
 export function addViewFormEvents() {
     const viewForms = document.getElementsByClassName('thread-view-form');
@@ -19,10 +18,10 @@ export function attachViewFormEventListener(form) {
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
-        const button = e.target.getElementsByTagName('button') [0];
+        const button = e.target.getElementsByTagName('button')[0];
         const label = Util.disableButton(button);
         const threadId = e.target.threadId.value;
-        history.pushState(null, null,  routePath.THREAD + '#' + threadId);
+        history.pushState(null, null, routePath.THREAD + '#' + threadId);
         await thread_page(threadId);
         // await Util.sleep(1000);
         Util.enableButton(button, label);
@@ -35,16 +34,16 @@ export async function thread_page(threadId) {
         return;
     }
     if (!threadId) {
-        Util.info('Error','Thread is is null; invalied access');
+        Util.info('Error', 'Thread is is null; invalied access');
         return;
     }
 
-    // To-Do list
-    // 1. get thread from Firestore by threadId
-    // 2. get all replies to this thread 
-    // 3. display the thread
-    // 4. display all replies
-    // 5. add a form to post a new reply
+    //To-Do-List
+    //1. get thread from Firestore by threadId
+    //2. get all replies to this thread
+    //3. display the thread
+    //4. display all replies
+    //5. add a form to post a new reply
 
     let thread;
     let replies;
@@ -54,7 +53,7 @@ export async function thread_page(threadId) {
         replies = await FirestoreController.getReplyList(threadId);
     } catch (e) {
         if (Constants.DEV) console.log(e);
-        Util.info('Error',JSON.stringify(e));
+        Util.info('Error', JSON.stringify(e));
         return;
     }
 
@@ -66,20 +65,20 @@ export async function thread_page(threadId) {
     `;
 
     html += '<div id="reply-section">'
-        // display replies
+         // display replies
     if (replies && replies.length > 0) {
         replies.forEach(r => {
             html += buildReplyView(r);
         })
-    } 
+    }
     html += '</div>'
 
     html += `
         <div>
-            <form id="form-add-reply"method="post">
+            <form id="form-add-reply" method="post">
                 <textarea name="content" required minlength="3" placeholder="Reply to this thread"></textarea>
                 <br>
-                <button type="submit" class="btn btn-outline-info">Post reply</button>
+                <button type="submit" class="btn btn-outline-info">post reply</button>
             </form>
         </div>
     `;
@@ -92,11 +91,11 @@ export async function thread_page(threadId) {
         const uid = currentUser.uid;
         const email = currentUser.email;
         const timestamp = Date.now();
-        const reply = new  Reply({
+        const reply = new Reply({
             uid, email, timestamp, content, threadId,
         });
 
-        const button = e.target.getElementsByTagName('button') [0];
+        const button = e.target.getElementsByTagName('button')[0];
         const label = Util.disableButton(button);
 
         try {
@@ -119,14 +118,13 @@ export async function thread_page(threadId) {
 }
 
 function buildReplyView(reply) {
-    return `
-         <div class="border border-primary">
-             <div class="bg-info text-white">
-                 Replied by ${reply.email} (At ${new Date(reply.timestamp). toString})
-             </div>
-             ${reply.content}
+     return `
+     <div class="border border-primary">
+         <div class="bg-info text-white">
+             Replied by ${reply.email} (At ${new Date(reply.timestamp).toString()})
          </div>
-         <hr> 
-    `;
+         ${reply.content}
+     </div>
+     <hr>
+     `;
 }
-

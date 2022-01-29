@@ -22,8 +22,8 @@ export function addEventListeners() {
 }
 async function addNewThread(e) {
     e.preventDefault();
-    
-    const createButton = e.target.getElementsByTagName('button')[0];
+
+    const createButton = e.target.getElementsByTagName('button') [0];
     const label = Util.disableButton(createButton);
 
     const title = e.target.title.value;
@@ -42,28 +42,29 @@ async function addNewThread(e) {
     try {
         const docId = await FirestoreController.addThread(thread);
         thread.set_docId(docId);
-       // home_page(); //this will be improved later
-        const trTag = document.createElement('tr'); // <tr></tr>
-        trTag.innerHTML = buildThreadView(thread);
-        const tableBodyTag = document.getElementById('thread-view-table-body');
-        tableBodyTag.prepend(trTag);
-        // attach event listener to the new thread form
-        const viewForms = document.getElementsByClassName('thread-view-form');
-        ThreadPage.attachViewFormEventListener(viewForms[0]);
+      //  home_page(); //this will be improved later
+      const trTag = document.createElement('tr'); // <tr></tr>
+      trTag.innerHTML = buildThreadView(thread);
+      const tableBodyTag = document.getElementById('thread-view-table-body');
+      tableBodyTag.prepend(trTag);
+      // attach event listener to the new thread form
+      const viewForms = document.getElementsByClassName('thread-view-form');
+      ThreadPage.attachViewFormEventListener(viewForms[0]);
 
-        e.target.reset(); // clears entries in the form
-        const noThreadFound = document.getElementById('no-thread-found');
-        if (noThreadFound) {
-            noThreadFound.remove();
-        }
+      e.target.reset(); // clears entries in the form
+      const noThreadFound = document.getElementById('no-thread-found');
+      if (noThreadFound) {
+          noThreadFound.remove();
+      }
 
         Util.info('Success', 'A new thread has been added', Elements.modalCreateThread);
     } catch (e) {
         if (Constants.DEV) console.log(e);
         Util.info('Failed', JSON.stringify(e), Elements.modalCreateThread);
 
-    Util.enableButton(createButton, label);    
     }
+
+    Util.enableButton(createButton, label);
 
 }
 
@@ -128,16 +129,17 @@ export function buildHomescreen(threadList) {
     Elements.root.innerHTML = html;
 
     // attach event listeners to view buttons
-    ThreadPage.addViewFormEvents();
+    ThreadPage.addViewFormEvents(); 
 }
 
 function buildThreadView(thread) {
     return `
     <td>
-       <form method="post" class="thread-view-form">
-           <input type="hidden" name="threadId" value="${thread.docId}">
-           <button type="submit" class="btn btn-outline-primary">View</button>
-       </form>
+        <form method="post" class="thread-view-form">
+            <input type="hidden" name="threadId" value="${thread.docId}">
+            <button type="submit" class="btn btn-outline-primary">View</button>
+        </form>
+    </td>
     <td>${thread.title}</td>
     <td>${!thread.keywordsArray || !Array.isArray(thread.keywordsArray) ? '' : thread.keywordsArray.join(' ')}</td>
     <td>${thread.email}</td>

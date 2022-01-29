@@ -93,7 +93,7 @@
               <input type="password" name="password" required minlength="6" placeholder="password">
             </div>
             <div>
-              <input type="password" name="passwordConfirm" required placeholder="Confirm password">
+              <input type="password" name="passwordConfirm" required minlength="6" placeholder="confirm password">
             </div>
             <div>
               <button type="submit" class="btn btn-outline-primary">Create</button>
@@ -155,10 +155,10 @@
 
   <script type="module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
-
+  
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDBKH451wxf3qUdKr0d1B0d4sR-bGAZh88",
@@ -168,7 +168,7 @@
       messagingSenderId: "626307077447",
       appId: "1:626307077447:web:c19ffaf8e93361b7ed6862"
     };
-
+  
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
   </script>

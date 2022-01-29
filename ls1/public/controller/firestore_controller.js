@@ -1,7 +1,7 @@
 import {
-     getFirestore, collection, addDoc, getDocs, query, orderBy,
-     doc, getDoc,where
- } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js"
+    getFirestore, collection, addDoc, getDocs, query, orderBy,
+    doc, getDoc, where
+ } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js"
 import { COLLECTIONS } from "../model/constants.js";
 import { Reply } from "../model/reply.js";
 import { Thread } from "../model/thread.js";
@@ -24,12 +24,12 @@ export async function getThreadList() {
         const t = new Thread(doc.data());
         t.set_docId(doc.id);
         threadList.push(t);
-    });
+    })
     return threadList;
 }
 
 export async function getOneThread(threadId) {
-    const docRef = doc(db,COLLECTIONS.THREADS,threadId);
+    const docRef = doc(db, COLLECTIONS.THREADS, threadId);
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) return null;
     const t = new Thread(docSnap.data());
@@ -39,7 +39,7 @@ export async function getOneThread(threadId) {
 
 export async function addReply(reply) {
     const docRef = await addDoc(collection(db, COLLECTIONS.REPLIES), reply.toFirestore());
-    return docRef.id; 
+    return docRef.id;
 }
 
 export async function getReplyList(threadId) {
@@ -53,14 +53,14 @@ export async function getReplyList(threadId) {
         replies.push(r);
     })
 
-    return replies
+    return replies;
 }
 
 export async function searchThreads(keywordsArray) {
     const threadList = [];
-    const q = query(collection(db,COLLECTIONS.THREADS),
-    where('keywordsArray', 'array-contains-any', keywordsArray),
-    orderBy('timestamp', 'desc')
+    const q = query(collection(db, COLLECTIONS.THREADS),
+        where('keywordsArray', 'array-contains-any', keywordsArray),
+        orderBy('timestamp', 'desc')
     );
     const snapShot = await getDocs(q);
 
