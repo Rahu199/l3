@@ -1,15 +1,14 @@
-import {
-    getStorage, ref, uploadBytes, getDownloadURL,
+import { 
+    getStorage, ref, uploadBytes,getDownloadURL,
     deleteObject,
-} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js"
+} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js";
 
-import * as Constants from '../model/constants.js'
-
+import * as Constants from '../model/constants.js';
 const storage = getStorage();
 
-export  async function uploadImage(imageFile, imageName) {
-    if (!imageName) {
-        imageName = imageFile.name + Date.now();
+export async function uploadImage(imageFile, imageName){
+    if(!imageName){
+        imageName=imageFile.name+Date.now();
     }
 
     const storageRef = ref(storage, Constants.STORAGEFOLDERNAMES.PRODUCT_IMAGES + imageName);
@@ -19,7 +18,7 @@ export  async function uploadImage(imageFile, imageName) {
     return {imageName, imageURL};
 }
 
-export async function deleteProductImage(imageName) {
+export async function deleteProductImage(imageName){
     const storageRef = ref(storage, Constants.STORAGEFOLDERNAMES.PRODUCT_IMAGES + imageName);
     await deleteObject(storageRef);
 }

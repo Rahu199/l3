@@ -1,7 +1,8 @@
-import * as Elements from './elements.js'
+import { modalInfobox } from "./elements.js";
+import * as Elements from "./elements.js";
 
 export function info(title, body, closeModal) {
-    if (closeModal) closeModal.hide();
+    if(closeModal) closeModal.hide();
     Elements.modalInfobox.title.innerHTML = title;
     Elements.modalInfobox.body.innerHTML = body;
     Elements.modalInfobox.modal.show();
@@ -10,16 +11,16 @@ export function info(title, body, closeModal) {
 export function disableButton(button) {
     button.disabled = true;
     const originalLabel = button.innerHTML;
-    button.innerHTML = 'Wait...';
+    button.innerHTML='Wait...';
     return originalLabel;
 }
 
-export function enableButton(button, label) {
-    if (label) button.innerHTML = label;
+export function enableButton(button, label){
+    if(label)button.innerHTML=label;
     button.disabled = false;
 }
 
-//from stackoverflow
-export function sleep(ms) {
+//From Stackoverflow
+export function sleep(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }

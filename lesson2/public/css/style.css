@@ -3,30 +3,30 @@
     font-size: 200%;
     text-align: center;
     color: white;
-    background-color: navy;
+    background-color: blue;
 }
 
 li.nav-item {
-    margin-right: 15px;
+    padding-right: 15px;
 }
 
-.modal-preauth {
-    display: block;
+.modal-preauth{
+    display:block;
 }
 
-.modal-postauth {
-    display: none;
+.modal-postauth{
+    display:none;
 }
 
-input {
+input{
     display: block;
     margin: 8px 0;
-    padding: 8px 2px;
-    border-width: 0 0 2px;
+    padding: 8px 2 px;
+    border-width: 0 0 2px 0;
     width: 100%;
 }
 
-textarea {
-    width: 100%;
+textarea{
+    width: 95%;
     min-height: 150px;
 }
