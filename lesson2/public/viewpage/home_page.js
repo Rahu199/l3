@@ -53,6 +53,7 @@ export function addEventListeners() {
     })
 }
 
+
 export async function home_page() {
 
     if (!currentUser) {
