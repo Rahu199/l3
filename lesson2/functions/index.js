@@ -184,7 +184,7 @@ exports.cfn_searchProductList = functions.https.onCall(async (data, context) => 
     }
 });
 
-//Rahul Kotturi - Sorting Price
+//Rahul Kotturi - Sorting Price sample
 exports.cfn_getProductListByPrice = functions.https.onCall(async (data, context) => {
     if(!authorized(context.auth.token.email)){
         if(Constants.DEV) console.log(e);
